@@ -6,52 +6,41 @@ const sure= document.getElementById('sure');
 const not_sure = document.getElementById('not_sure');
 const game2 = document.getElementById('game2')
 
-//to make areyousure popup disappear
-const btn = document.querySelectorAll('.radio_buttons'); //using the class name or can also use input tag
-not_sure.addEventListener('click',function(){
-    areyousure.style.display = "none";
-    game2.style.height = "300px"
+const radio = document.getElementsByClassName('radio')
+console.log(radio)
 
-})
+const rightvalue = "newdelhi";
+let userSelctedValue;
 
-//to display are you sure after the selection of the radio button
-console.log(btn)
-btn.forEach(function(btn){//iterates over the btn 
-    btn.addEventListener('click',function(){
+//To display areyousure after clicking the radio button.
+for(let i=0; i< radio.length; i++){
+    radio[i].addEventListener('change',function(event){
         areyousure.style.display = "block";
         game2.style.height = "500px";
+        userSelctedValue = event.target.value;
     })
-})
+}
 
 
-
-console.log(typeof(newdelhi.value))
-console.log(typeof(sure))
-
-//to open new page after clicking sure and correct option.
-//opening the final page WIN page
-
-
-    newdelhi.addEventListener('click',function(){
-        sure.addEventListener('click',function(){
-       
-        location.href= "game3.html";
-    })
-
-    })
-
-
-//TO open the LOse page    
-kolkata.addEventListener('click',function(){
-    sure.addEventListener('click',function(){
+//To open the Congratulations page
+sure.addEventListener('click',function(){
+    if(userSelctedValue == rightvalue){
+        location.href = "game3.html"
+    }
+    else{
         location.href = "lost.html"
+    }
+})
 
-})
+
+//To open Lost page
+not_sure.addEventListener('click',function(){
+    for(i=0;i<radio.length;i++){
+        radio[i].checked = false; //reseting the radio buttons
+    }
+    areyousure.style.display = "none";
+    game2.style.height = "300px";
 })
 
-chennai.addEventListener('click',function(){
-    sure.addEventListener('click',function(){
-        location.href = "lost.html"
-    })
-})
-   
+
+
